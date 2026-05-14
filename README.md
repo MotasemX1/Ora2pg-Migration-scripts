@@ -8,21 +8,16 @@ This guide provides a practical roadmap for migrating the Dinarak database from 
 ## 1. Prepare Oracle Environment and Ora2Pg Tool
 
 ### a. Set Up Oracle in Docker
-You will need an Oracle Docker image (e.g., `progressoft/oracle:19.3.0-ee`). Set it up as follows:
+You will need an Oracle Docker image (e.g., `oracle:19.3.0-ee`). Set it up as follows:
 
 ```bash
 docker run -d -p 1521:1521 \
   --name oracle_19c_image \
   -v /opt/oracle/oradata:/opt/oracle/oradata \
-  progressoft/oracle:19.3.0-ee
+  oracle:19.3.0-ee
 ```
 
 Import the Dinarak Oracle dump into this image using the `imp` tool. Make sure the database and schema are loaded correctly.
-
-### b. Install Ora2Pg
-Follow the Ora2Pg installation instructions from this GitLab guide:
-
-https://gitlab.progressoft.io/progressoft/recipes/baremetal/ora2pg
 
 ---
 
@@ -123,12 +118,6 @@ Create a new branch from the desired release tag. Then update the `Application.j
 ```java
 DBTypes.POSTGRESQL
 ```
-
-Rebuild the application with the PostgreSQL profile enabled.
-
-you can check user branch: 
-
-`https://gitlab.progressoft.io/progressoft/mobile/customers/jordan/dinarak/dinarak-mpay/-/tree/Postgres-1.40.0-TEST?ref_type=heads`
 
 Ensure your environment configuration points to the PostgreSQL JDBC driver and connection URL.
 
